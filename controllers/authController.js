@@ -65,3 +65,4 @@ export const addBook = (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json("wey have a problem");
     }
 });
+// export const getBooks = async ()
