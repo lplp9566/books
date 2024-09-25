@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { registerUser, authenticateUser,addBookToUser } from "../services/userService.js";
-import { User, userNamePassword ,THEBOOK} from "../models/types.js";
+import { registerUser, authenticateUser,addBookToUser, getBooks } from "../services/userService.js";
+import { User, userNamePassword ,THEBOOK, Book} from "../models/types.js";
 
 
 export const register = async (req: Request, res: Response): Promise<void> => {
@@ -64,8 +64,20 @@ export const addBook = async (req:Request,res:Response):Promise<void>=>{
    }
 
 }
-export const getBooks = async (req:Request,res:Response):Promise<void>=>{
+export const getbooksfromuser = async (req:Request,res:Response):Promise<void>=>{
   try{
+  
+    const userId = req.params.id;
+    const bookromUser = await getBooks(userId)
+    if(!bookromUser!){
+      res.status(500).json("the user dos not have books")
+    }
+    res.status(200).json(bookromUser)
     
   }
+  catch(error){
+    console.error(error)
+    res.status(500).json("wey have a problem")
+   }
+
 }

@@ -98,3 +98,14 @@ export const addBookToUser = async (
     throw error;
   }
 };
+
+    export const getBooks = async(userid:string):Promise<Book[]>=>{
+      const users: User[] = await readFromJsonFile();
+      const userFind = users.find((u) => u.id === userid);
+      const userBooks: Book[] = userFind!.books || [];
+
+
+
+      return userBooks
+
+    }
