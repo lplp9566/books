@@ -1,7 +1,7 @@
 import jsonfile from 'jsonfile';
 import { User } from '../models/types';
 
-const DB_FILE_PATH = process.env.DB_FILE_PATH || './data/db.json';
+const DB_FILE_PATH = process.env.DB_FILE_PATH || './db.json';
 
 
 export const writeUserToJsonFile = async (user: User): Promise<void> => {

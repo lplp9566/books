@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import jsonfile from 'jsonfile';
-const DB_FILE_PATH = process.env.DB_FILE_PATH || './data/db.json';
+const DB_FILE_PATH = process.env.DB_FILE_PATH || './db.json';
 export const writeUserToJsonFile = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield jsonfile.readFile(DB_FILE_PATH);
     users.push(user);

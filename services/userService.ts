@@ -86,7 +86,6 @@ export const addBookToUser = async (
     
     
     newUser.books?.push(updatedBook)
-    console.log("ELADS NEW BOOK", updatedBook);
     await editUserToJsonFile(userFind, newUser);
     const addBook: THEBOOK = {
       id: book.id,
