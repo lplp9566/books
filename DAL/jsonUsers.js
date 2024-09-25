@@ -18,3 +18,10 @@ export const readFromJsonFile = () => __awaiter(void 0, void 0, void 0, function
     const users = yield jsonfile.readFile(DB_FILE_PATH);
     return users;
 });
+export const editUserToJsonFile = (user, editUser) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield readFromJsonFile();
+    console.log(editUser);
+    const oldUser = users.find((u) => u.id === user.id);
+    users[users.indexOf(oldUser)] = editUser;
+    yield jsonfile.writeFile(DB_FILE_PATH, users);
+});

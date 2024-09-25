@@ -15,3 +15,8 @@ export interface userNamePassword {
   userName: string;
   password: string;
 }
+
+export interface THEBOOK {
+  id:string,
+  book:Book
+}

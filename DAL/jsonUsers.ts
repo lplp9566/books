@@ -14,3 +14,12 @@ export const readFromJsonFile = async (): Promise<User[]> => {
   const users: User[] = await jsonfile.readFile(DB_FILE_PATH);
   return users;
 };
+
+export const editUserToJsonFile = async(user:User,editUser:User):Promise<void>=>{
+
+  const users: User[] = await readFromJsonFile();
+  console.log(editUser)
+  const oldUser = users.find((u) => u.id === user.id);
+  users[users.indexOf(oldUser!)] = editUser
+  await jsonfile.writeFile(DB_FILE_PATH,users)
+ }

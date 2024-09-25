@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { registerUser, authenticateUser } from "../services/userService.js";
-import { userNamePassword } from "../models/types.js";
+import { registerUser, authenticateUser,addBookToUser } from "../services/userService.js";
+import { User, userNamePassword ,THEBOOK} from "../models/types.js";
+
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -44,3 +45,23 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
   }
 };
+
+export const addBook = async (req:Request,res:Response):Promise<void>=>{
+  try{
+      const userId = req.body.userid
+      const book = req.body.book
+      const bookRes:THEBOOK =await addBookToUser(userId,book);
+      if(!bookRes)
+        res.status(400).json("there is a  problem")
+      else{
+        res.status(201).json(`book:${book} was add to :${userId}`)
+      }
+
+  }
+   catch(error){
+    console.error(error)
+    res.status(500).json("wey have a problem")
+   }
+
+}
+export const getBooks = async ()

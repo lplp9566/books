@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { registerUser, authenticateUser } from "../services/userService.js";
+import { registerUser, authenticateUser, addBookToUser } from "../services/userService.js";
 export const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { userName, password } = req.body;
@@ -47,5 +47,21 @@ export const login = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             console.error("Error during login:", error);
             res.status(500).json({ error: "Internal server error." });
         }
+    }
+});
+export const addBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userId = req.body.userid;
+        const book = req.body.book;
+        const bookRes = yield addBookToUser(userId, book);
+        if (!bookRes)
+            res.status(400).json("there is a  problem");
+        else {
+            res.status(201).json(`book:${book} was add to :${userId}`);
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json("wey have a problem");
     }
 });
