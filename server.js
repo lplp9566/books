@@ -1,7 +1,11 @@
 import express from "express";
-import autoRouter from "./routes/auth.js";
+import authRouter from "./routes/auth.js";
+import dotenv from "dotenv";
+dotenv.config();
+const PORT = process.env.PORT || 3000;
 const app = express();
-app.use(express.json());
-app.use('/', autoRouter);
-const PORT = 3000;
-app.listen(PORT, () => { console.log("server is ON"); });
+app.use(express.json()); // Body parser
+app.use("/", authRouter); // Auth Router
+app.listen(PORT, () => {
+    console.log("server is on");
+}); // Listning for requests

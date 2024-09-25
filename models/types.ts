@@ -1,12 +1,17 @@
- export interface User {
-    username:string,
-    password:string,
-    id?:string,
-    books?:Book[]
+export interface User {
+  userName: string;
+  password: string;
+  id?: string;
+  books?: Book[];
 }
-interface Book {
-    id?:string,
-    title:string,
-    auster:string
 
+export interface Book {
+  id?: string;
+  title: string;
+  author: string;
+}
+
+export interface userNamePassword {
+  userName: string;
+  password: string;
 }
